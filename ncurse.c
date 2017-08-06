@@ -23,3 +23,25 @@ void ncurses_destroy()
 	/* ncurse cleanup */
 	endwin();
 }
+
+static WINDOW *logwin;
+/* Create the log window */
+void logwin_init()
+{
+	logwin = newwin(LOGWIN_YLEN,       /* height */
+			window_cols - 6,   /* width */
+			window_rows - LOGWIN_YLEN,  /* start y */
+			3                  /* start x */
+		);
+	/* Decorate the logwin */
+	box(logwin, 0, 0);
+	/* Print a LOG on boundary */
+	mvwprintw(logwin, 0, 2, " LOG ");
+	/* Remember to refresh the window */
+	wrefresh(logwin);
+}
+
+void logwin_destroy()
+{
+	delwin(logwin);
+}
