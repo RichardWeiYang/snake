@@ -26,8 +26,11 @@ void ncurses_destroy()
 
 static WINDOW *logwin;
 /* Create the log window */
+static char *logbuf[LOGBUF_NUM];
+static char *emptyline;
 void logwin_init()
 {
+	int i;
 	logwin = newwin(LOGWIN_YLEN,       /* height */
 			window_cols - 6,   /* width */
 			window_rows - LOGWIN_YLEN,  /* start y */
@@ -39,9 +42,42 @@ void logwin_init()
 	mvwprintw(logwin, 0, 2, " LOG ");
 	/* Remember to refresh the window */
 	wrefresh(logwin);
+
+	/* Initialize logbuf */
+	for (i = 0; i < LOGBUF_NUM; i++) {
+		logbuf[i] = (char*)malloc(window_cols - 8);
+		logbuf[i][0] = 0;
+	}
+
+	emptyline = malloc(window_cols);
+	memset(emptyline, ' ', window_cols - 9);
+	emptyline[window_cols - 9] = 0;
 }
 
 void logwin_destroy()
 {
+	int i;
+
+	/* Free logbuf */
+	for (i = 0; i < LOGBUF_NUM; i++)
+		free(logbuf[i]);
+	free(emptyline);
 	delwin(logwin);
+}
+
+void runlog(char *str)
+{
+	static int index = 0;
+	int i;
+
+	strncpy(logbuf[index], str, window_cols - 10);
+	logbuf[index][window_cols - 9] = 0;
+
+	for (i = 0; i < LOGBUF_NUM; i++) {
+		mvwprintw(logwin, i+1, 1, emptyline);
+		mvwprintw(logwin, i+1, 1, logbuf[(index+i) % LOGBUF_NUM]);
+		wrefresh(logwin);
+	}
+
+	index = (index + LOGBUF_NUM - 1) % LOGBUF_NUM;
 }

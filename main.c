@@ -11,6 +11,7 @@ int main()
 	refresh();
 
 	logwin_init();
+	runlog("Press");
 
 	/* Wait for input */
 	getch();
