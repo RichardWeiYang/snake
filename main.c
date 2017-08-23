@@ -13,9 +13,12 @@ int main()
 	logwin_init();
 	runlog("Press");
 
+	gamewin_init();
+
 	/* Wait for input */
 	getch();
 
+	gamewin_destroy();
 	logwin_destroy();
 	ncurses_destroy();
 	return 0;

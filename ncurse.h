@@ -13,4 +13,6 @@ void ncurses_destroy();
 void logwin_init();
 void logwin_destroy();
 void runlog(char *str);
+void gamewin_init();
+void gamewin_destroy();
 #endif

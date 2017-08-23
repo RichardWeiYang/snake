@@ -81,3 +81,26 @@ void runlog(char *str)
 
 	index = (index + LOGBUF_NUM - 1) % LOGBUF_NUM;
 }
+
+static WINDOW *gmwin;
+void gamewin_init()
+{
+	gmwin = newwin(window_rows - LOGWIN_YLEN - 2,   /* height */
+			window_cols - 6,   /* width */
+			1,                 /* start y */
+			3                  /* start x */
+		);
+	/* Decorate the gmwin */
+	box(gmwin, 0, 0);
+	/* Print a logo on boundary */
+	mvwprintw(gmwin, 0, 2, " Snake ");
+	mvwprintw(gmwin, window_rows - LOGWIN_YLEN - 3 , 2, " Level: 0 ");
+	/* Remember to refresh the window */
+	wrefresh(gmwin);
+}
+
+void gamewin_destroy()
+{
+	delwin(gmwin);
+}
+
