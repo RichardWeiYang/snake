@@ -1,4 +1,5 @@
 #include "ncurse.h"
+#include "snake.h"
 
 int window_rows, window_cols;
 /* libncurse initialization function */
@@ -104,3 +105,8 @@ void gamewin_destroy()
 	delwin(gmwin);
 }
 
+void draw_snake()
+{
+	mvwaddch(gmwin, snake.y, snake.x, snake.c);
+	wrefresh(gmwin);
+}

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <ncurses.h>
 #include "ncurse.h"
+#include "snake.h"
 
 int main()
 {
@@ -14,6 +15,9 @@ int main()
 	runlog("Press");
 
 	gamewin_init();
+
+	snake_create();
+	draw_snake();
 
 	/* Wait for input */
 	getch();
