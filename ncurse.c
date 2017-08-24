@@ -16,6 +16,8 @@ void ncurses_init(void)
 	keypad(stdscr, TRUE);
 	/* make cursor invisible */
 	curs_set(0);
+	/* set random seed */
+	srandom(time(NULL));
 }
 
 /* libncurse destroy function */
@@ -105,6 +107,12 @@ void gamewin_destroy()
 	delwin(gmwin);
 }
 
+void setlevel_gamewin(int i)
+{
+	mvwprintw(gmwin, window_rows - LOGWIN_YLEN - 3 , 2, " Level: %d ", i);
+	wrefresh(gmwin);
+}
+
 void draw_snake()
 {
 	mvwaddch(gmwin, snake.y, snake.x, snake.c);
@@ -116,3 +124,10 @@ void clear_snake()
 	mvwaddch(gmwin, snake.y, snake.x, ' ');
 	wrefresh(gmwin);
 }
+
+void draw_food()
+{
+	mvwaddch(gmwin, food.y, food.x, food.c);
+	wrefresh(gmwin);
+}
+

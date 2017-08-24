@@ -2,6 +2,7 @@
 #include "ncurse.h"
 
 struct snake snake;
+struct food food = {0, 0, '*'};
 
 void snake_create()
 {
@@ -39,3 +40,19 @@ int check_snake()
 		return -1;
 	return 0;
 }
+
+int check_food()
+{
+	if (food.y == snake.y && food.x == snake.x)
+		return 1;
+	return 0;
+}
+
+void create_food()
+{
+	do {
+		food.y = random() % (window_rows - LOGWIN_YLEN - 4) + 1;
+		food.x = random() % (window_cols - 8) + 1;
+	} while (check_food());
+}
+

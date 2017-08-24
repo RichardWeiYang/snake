@@ -17,9 +17,18 @@ struct snake {
 	int x;
 };
 
+struct food {
+	int y;
+	int x;
+	char c;
+};
+
 extern struct snake snake;
+extern struct food food;
 void snake_create();
 void snake_move();
 int check_snake();
+void create_food();
+int check_food();
 #endif  //SNAKE_H
 

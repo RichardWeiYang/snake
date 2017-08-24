@@ -4,6 +4,8 @@
 #include "ncurse.h"
 #include "snake.h"
 
+int level = 0;
+
 int start_game()
 {
 	int key;
@@ -46,6 +48,12 @@ int start_game()
 		runlog("Game Over!");
 		return -1;
 	}
+
+	if (check_food() == 1) {
+		create_food();
+		draw_food();
+		setlevel_gamewin(++level);
+	}
 	draw_snake();
 
 	return 0;
@@ -66,6 +74,9 @@ int main()
 
 	snake_create();
 	draw_snake();
+
+	create_food();
+	draw_food();
 
 	/* start the game */
 	while (start_game() != -1)
