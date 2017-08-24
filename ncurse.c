@@ -110,3 +110,9 @@ void draw_snake()
 	mvwaddch(gmwin, snake.y, snake.x, snake.c);
 	wrefresh(gmwin);
 }
+
+void clear_snake()
+{
+	mvwaddch(gmwin, snake.y, snake.x, ' ');
+	wrefresh(gmwin);
+}

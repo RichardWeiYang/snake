@@ -16,4 +16,5 @@ void runlog(char *str);
 void gamewin_init();
 void gamewin_destroy();
 void draw_snake();
+void clear_snake();
 #endif

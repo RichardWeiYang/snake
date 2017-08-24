@@ -12,3 +12,21 @@ void snake_create()
 	snake.y = 10;
 	snake.x = 15;
 }
+
+void snake_move()
+{
+	switch (snake.dir) {
+	case UP:
+		snake.y--;
+		break;
+	case DOWN:
+		snake.y++;
+		break;
+	case LEFT:
+		snake.x--;
+		break;
+	case RIGHT:
+		snake.x++;
+		break;
+	}
+}

@@ -21,24 +21,28 @@ int start_game()
 
 		switch (key) {
 		case 'w':
-			runlog("w pressed!");
+			snake.dir = UP;
 			break;
 		case 's':
-			runlog("s pressed!");
+			snake.dir = DOWN;
 			break;
 		case 'a':
-			runlog("a pressed!");
+			snake.dir = LEFT;
 			break;
 		case 'd':
-			runlog("d pressed!");
+			snake.dir = RIGHT;
 			break;
 		case 'q':
 			runlog("Quit Game!");
 			return -1;
 		default:
-			runlog("Not a valid key!");
+			return 0;
 		}
 	}
+
+	clear_snake();
+	snake_move();
+	draw_snake();
 
 	return 0;
 }
