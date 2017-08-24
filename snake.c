@@ -1,4 +1,5 @@
 #include "snake.h"
+#include "ncurse.h"
 
 struct snake snake;
 
@@ -29,4 +30,12 @@ void snake_move()
 		snake.x++;
 		break;
 	}
+}
+
+int check_snake()
+{
+	if (snake.y == 0 || snake.y == (window_rows - LOGWIN_YLEN - 3)
+	    || snake.x == 0 || snake.x == (window_cols - 7))
+		return -1;
+	return 0;
 }

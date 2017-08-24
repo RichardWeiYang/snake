@@ -20,5 +20,6 @@ struct snake {
 extern struct snake snake;
 void snake_create();
 void snake_move();
+int check_snake();
 #endif  //SNAKE_H
 

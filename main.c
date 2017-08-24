@@ -42,6 +42,10 @@ int start_game()
 
 	clear_snake();
 	snake_move();
+	if (check_snake() == -1) {
+		runlog("Game Over!");
+		return -1;
+	}
 	draw_snake();
 
 	return 0;
