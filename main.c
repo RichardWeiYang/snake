@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <ncurses.h>
 #include <sys/select.h>
+#include <math.h>
 #include "ncurse.h"
 #include "snake.h"
 
@@ -10,11 +11,14 @@ int start_game()
 {
 	int key;
 	fd_set set;
+	struct timeval timer;
 
 	/* monitor the standard input */
 	FD_ZERO(&set);
 	FD_SET(0, &set);
-	if (select(1, &set, NULL, NULL, NULL) < 0)
+	timer.tv_sec = 0;
+	timer.tv_usec = 1000000 / (sqrt(level) + 1);
+	if (select(1, &set, NULL, NULL, &timer) < 0)
 		return -1;
 
 	/* detect the pressed key */
