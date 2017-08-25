@@ -17,7 +17,7 @@ void runlog(char *str);
 void gamewin_init();
 void gamewin_destroy();
 void setlevel_gamewin(int i);
-void draw_snake();
-void clear_snake();
+void draw_snake_head();
+void clear_snake_tail();
 void draw_food();
 #endif

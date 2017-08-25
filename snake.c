@@ -17,20 +17,32 @@ void snake_create()
 	snake.tail->front = NULL;
 }
 
-void snake_move()
+void snake_move_tail_to_head()
 {
+	struct snake_body *head = snake.tail;
+
+	while (head->front)
+		head = head->front;
+
+	snake.tail->y = head->y;
+	snake.tail->x = head->x;
+	head->front = snake.tail;
+	head = snake.tail;
+	snake.tail = snake.tail->front;
+	head->front = NULL;
+
 	switch (snake.dir) {
 	case UP:
-		snake.tail->y--;
+		head->y--;
 		break;
 	case DOWN:
-		snake.tail->y++;
+		head->y++;
 		break;
 	case LEFT:
-		snake.tail->x--;
+		head->x--;
 		break;
 	case RIGHT:
-		snake.tail->x++;
+		head->x++;
 		break;
 	}
 }

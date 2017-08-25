@@ -46,8 +46,8 @@ int start_game()
 		}
 	}
 
-	clear_snake();
-	snake_move();
+	clear_snake_tail();
+	snake_move_tail_to_head();
 	if (check_snake() == -1) {
 		runlog("Game Over!");
 		return -1;
@@ -58,7 +58,7 @@ int start_game()
 		draw_food();
 		setlevel_gamewin(++level);
 	}
-	draw_snake();
+	draw_snake_head();
 
 	return 0;
 }
@@ -77,7 +77,7 @@ int main()
 	gamewin_init();
 
 	snake_create();
-	draw_snake();
+	draw_snake_head();
 
 	create_food();
 	draw_food();

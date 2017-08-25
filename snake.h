@@ -31,7 +31,7 @@ struct food {
 extern struct snake snake;
 extern struct food food;
 void snake_create();
-void snake_move();
+void snake_move_tail_to_head();
 int check_snake();
 void create_food();
 int check_food();
