@@ -124,6 +124,12 @@ void draw_snake_head()
 	wrefresh(gmwin);
 }
 
+void draw_snake_tail()
+{
+	mvwaddch(gmwin, snake.tail->y, snake.tail->x, snake.c);
+	wrefresh(gmwin);
+}
+
 void clear_snake_tail()
 {
 	mvwaddch(gmwin, snake.tail->y, snake.tail->x, ' ');

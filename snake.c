@@ -55,6 +55,17 @@ int check_snake()
 	return 0;
 }
 
+void add_snake_tail(int y, int x)
+{
+	struct snake_body *body;
+
+	body = malloc(sizeof(struct snake_body));
+	body->y = y;
+	body->x = x;
+	body->front = snake.tail;
+	snake.tail = body;
+}
+
 int check_food()
 {
 	if (food.y == snake.tail->y && food.x == snake.tail->x)

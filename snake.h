@@ -33,6 +33,7 @@ extern struct food food;
 void snake_create();
 void snake_move_tail_to_head();
 int check_snake();
+void add_snake_tail(int y, int x);
 void create_food();
 int check_food();
 #endif  //SNAKE_H

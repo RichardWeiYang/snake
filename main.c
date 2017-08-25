@@ -12,6 +12,7 @@ int start_game()
 	int key;
 	fd_set set;
 	struct timeval timer;
+	int old_y, old_x;
 
 	/* monitor the standard input */
 	FD_ZERO(&set);
@@ -46,6 +47,8 @@ int start_game()
 		}
 	}
 
+	old_y = snake.tail->y;
+	old_x = snake.tail->x;
 	clear_snake_tail();
 	snake_move_tail_to_head();
 	if (check_snake() == -1) {
@@ -54,6 +57,9 @@ int start_game()
 	}
 
 	if (check_food() == 1) {
+		/* grow a tail on eating food */
+		add_snake_tail(old_y, old_x);
+		draw_snake_tail();
 		create_food();
 		draw_food();
 		setlevel_gamewin(++level);
