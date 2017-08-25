@@ -115,13 +115,13 @@ void setlevel_gamewin(int i)
 
 void draw_snake()
 {
-	mvwaddch(gmwin, snake.y, snake.x, snake.c);
+	mvwaddch(gmwin, snake.tail->y, snake.tail->x, snake.c);
 	wrefresh(gmwin);
 }
 
 void clear_snake()
 {
-	mvwaddch(gmwin, snake.y, snake.x, ' ');
+	mvwaddch(gmwin, snake.tail->y, snake.tail->x, ' ');
 	wrefresh(gmwin);
 }
 

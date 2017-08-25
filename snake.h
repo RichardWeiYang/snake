@@ -9,12 +9,17 @@ enum direction {
 	RIGHT
 };
 
+struct snake_body {
+	int y;
+	int x;
+	struct snake_body *front;
+};
+
 struct snake {
 	int length;
 	enum direction dir;
 	char c;
-	int y;
-	int x;
+	struct snake_body *tail;
 };
 
 struct food {
