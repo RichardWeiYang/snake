@@ -49,8 +49,13 @@ void snake_move_tail_to_head()
 
 int check_snake()
 {
-	if (snake.tail->y == 0 || snake.tail->y == (window_rows - LOGWIN_YLEN - 3)
-	    || snake.tail->x == 0 || snake.tail->x == (window_cols - 7))
+	struct snake_body *head = snake.tail;
+
+	while (head->front)
+		head = head->front;
+
+	if (head->y == 0 || head->y == (window_rows - LOGWIN_YLEN - 3)
+	    || head->x == 0 || head->x == (window_cols - 7))
 		return -1;
 	return 0;
 }
@@ -68,7 +73,12 @@ void add_snake_tail(int y, int x)
 
 int check_food()
 {
-	if (food.y == snake.tail->y && food.x == snake.tail->x)
+	struct snake_body *head = snake.tail;
+
+	while (head->front)
+		head = head->front;
+
+	if (food.y == head->y && food.x == head->x)
 		return 1;
 	return 0;
 }
